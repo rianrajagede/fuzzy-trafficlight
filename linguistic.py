@@ -34,8 +34,10 @@ class ThreeNormal(object):
                 self.mid[i] = 0
                 self.top[i] = 1
 
-    def draw(self):
+    def draw(self, btm, top):
         plt.title(self.title)
+        plt.gca().set_ylim([0,1])
+        plt.gca().set_xlim([btm,top])
         plt.plot(self.domain,self.btm,'r',label=self.label_A)
         plt.plot(self.domain,self.mid,'g',label=self.label_B)
         plt.plot(self.domain,self.top,'b',label=self.label_C)
@@ -113,8 +115,10 @@ class FiveNormal(object):
                 self.ntop[i] = 0
                 self.nbtm[i] = 0
 
-    def draw(self):
+    def draw(self,btm,top):
         plt.title(self.title)
+        plt.gca().set_ylim([0,1])
+        plt.gca().set_xlim([btm,top])
         plt.plot(self.domain,self.btm,'r',label=self.label_A)
         plt.plot(self.domain,self.mid,'g',label=self.label_B)
         plt.plot(self.domain,self.top,'b',label=self.label_C)
