@@ -44,7 +44,7 @@ class Rule(object):
         if( compare([self.ling_1,alt_2,self.ling_3], [2,2,2]) ):
             self.cons_data = self.cons.top
 
-    # Operating Min di implikasi
+    # Operating Minimum for implication rule
     def generate_fp(self):
         if self.ling_1==0:
             self.antrian_data = self.antrian.btm
@@ -67,21 +67,13 @@ class Rule(object):
         else:
             self.mobil_data = self.mobil.top
 
-        # print self.antrian_data
-        # print self.lebar_data
-        # print self.mobil_data
-        # print self.antrian_data[self.a]
-        # print self.lebar_data[self.l]
-        # print self.mobil_data[self.m]
         return min(self.antrian_data[self.a], self.lebar_data[self.l], self.mobil_data[self.m])
 
-    # Menggunakan implikasi mamdani
+    # using mamdani implication
     def implication(self):
         self.ret = []
         self.set_ling_cons()
         self.fp = self.generate_fp()
-        # print self.cons_data
-        # print self.fp
         for i in xrange(len(self.cons_data)):
             self.ret.append(min(self.fp, self.cons_data[i]))
         return self.ret

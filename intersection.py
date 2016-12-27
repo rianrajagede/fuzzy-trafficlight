@@ -22,12 +22,13 @@ class Intersection(object):
                                   self.lebar, j, \
                                   self.mobil, k, \
                                   a_input, l_input, m_input, self.waktu)
+                        # Q save inference result each rules
                         self.Q.append(self.R1.implication())
                         if i==2 and j==0 and k==2 and debug==True:
                              plt.figure(5)
                              self.R1.draw()
 
-        # Inference
+        # Inference from all rules
         self.waktu_star = np.zeros(len(self.waktu.domain))
         for i in self.waktu.domain:
             self.waktu_star[i] = 0
@@ -55,16 +56,9 @@ class Intersection(object):
                 self.right_id = self.waktu.domain[-1]
             self.sum_of_weight = self.sum_of_weight + self.weight
             self.sum_of_center_weight = self.sum_of_center_weight + (self.left_id+(self.right_id-self.left_id)/2)*self.weight
-            # if i==11:
-            #     print weight
-            #     print left_id
-            #     print right_id
 
         self.result = self.sum_of_center_weight/(self.sum_of_weight*1.0)
-        # print sum_of_center_weight
-        # print sum_of_weight
         return self.result
-
 
     def draw_inference(self, fig_number, label):
         plt.gca().set_ylim([0,1])
@@ -73,7 +67,6 @@ class Intersection(object):
         plt.axvline(self.result,ls='--',c='b')
 
     def draw(self):
-        # plt.figure(1)
         plt.subplot(411)
         self.antrian.draw(0,60)
         plt.subplot(412)
@@ -82,4 +75,3 @@ class Intersection(object):
         self.mobil.draw(0,24)
         plt.subplot(414)
         self.waktu.draw(15,144)
-        # plt.tight_layout()
